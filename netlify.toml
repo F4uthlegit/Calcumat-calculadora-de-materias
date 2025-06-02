@@ -1,0 +1,9 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Type = "text/javascript; charset=utf-8"
+    X-Content-Type-Options = "nosniff" # Boa prática para evitar problemas de MIME type
