@@ -1,0 +1,32 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # Dispara o workflow quando houver um push na branch 'main'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3 # Faz o checkout do seu repositório
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18' # Use a versão do Node.js que você está usando (18 é comum)
+
+      - name: Install dependencies
+        run: npm install # Instala as dependências do seu projeto
+
+      - name: Build project
+        run: npm run build # Executa o comando de build para criar a pasta 'dist'
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist # Especifica que a pasta a ser publicada é a 'dist'
+          publish_branch: gh-pages # A branch para onde os arquivos serão publicados
