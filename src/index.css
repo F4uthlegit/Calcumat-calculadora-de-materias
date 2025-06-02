@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 20 14% 4%; /* Darker Background */
+    --foreground: 20 5% 95%; /* Lighter Foreground */
+    --card: 20 10% 10%; /* Darker Card */
+    --card-foreground: 20 5% 90%; /* Lighter Card Foreground */
+    --popover: 20 10% 10%;
+    --popover-foreground: 20 5% 90%;
+    --primary: 35 91% 55%; /* Construction Orange/Yellow */
+    --primary-foreground: 20 10% 5%;
+    --secondary: 20 10% 15%;
+    --secondary-foreground: 20 5% 90%;
+    --muted: 20 10% 15%;
+    --muted-foreground: 20 5% 60%;
+    --accent: 35 80% 60%;
+    --accent-foreground: 20 10% 5%;
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 20 10% 20%;
+    --input: 20 10% 20%;
+    --ring: 35 91% 55%;
+    --radius: 0.5rem;
+  }
+
+  .dark { /* Keeping dark vars for consistency but base is already dark */
+    --background: 20 14% 4%;
+    --foreground: 20 5% 95%;
+    --card: 20 10% 10%;
+    --card-foreground: 20 5% 90%;
+    --popover: 20 10% 10%;
+    --popover-foreground: 20 5% 90%;
+    --primary: 35 91% 55%;
+    --primary-foreground: 20 10% 5%;
+    --secondary: 20 10% 15%;
+    --secondary-foreground: 20 5% 90%;
+    --muted: 20 10% 15%;
+    --muted-foreground: 20 5% 60%;
+    --accent: 35 80% 60%;
+    --accent-foreground: 20 10% 5%;
+    --destructive: 0 62% 40%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 20 10% 20%;
+    --input: 20 10% 20%;
+    --ring: 35 91% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Roboto', sans-serif; /* More industrial/readable font */
+  }
+}
+
+.construction-theme-bg {
+  background-color: #1a202c; /* Dark Slate Gray */
+  background-image: 
+    /* Subtle diagonal lines */
+    linear-gradient(135deg, rgba(255, 193, 7, 0.03) 25%, transparent 25%), 
+    linear-gradient(225deg, rgba(255, 193, 7, 0.03) 25%, transparent 25%),
+    linear-gradient(45deg, rgba(255, 193, 7, 0.03) 25%, transparent 25%),
+    linear-gradient(315deg, rgba(255, 193, 7, 0.03) 25%, transparent 25%),
+    /* Concrete texture overlay */
+    url('data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22100%22%20height%3D%22100%22%20viewBox%3D%220%200%20100%20100%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22%232d3748%22%20fill-opacity%3D%220.1%22%3E%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%2250%22%20height%3D%2250%22/%3E%3Crect%20x%3D%2250%22%20y%3D%2250%22%20width%3D%2250%22%20height%3D%2250%22/%3E%3C/g%3E%3C/svg%3E');
+  background-size: 50px 50px, 50px 50px, 50px 50px, 50px 50px, 100px 100px;
+  background-position: 0 0, 25px 25px, 25px 0, 0 25px, 0 0;
+}
+
+
+.glass-effect { /* Adjusted for darker theme */
+  background: rgba(45, 55, 72, 0.6); /* Darker translucent background */
+  backdrop-filter: blur(12px) saturate(150%);
+  border: 1px solid rgba(255, 193, 7, 0.1); /* Accent border */
+  box-shadow: 0 8px 32px 0 rgba(255, 193, 7, 0.1);
+}
+
+.glass-effect-dark { /* Even darker for specific elements */
+  background: rgba(26, 32, 44, 0.75); 
+  backdrop-filter: blur(15px) saturate(180%);
+  border: 1px solid rgba(255, 193, 7, 0.15);
+  box-shadow: 0 4px 20px 0 rgba(255, 193, 7, 0.08);
+}
+
+.construction-pattern { /* For card headers, more subtle on dark theme */
+  background-image: 
+    linear-gradient(45deg, rgba(255,193,7,0.05) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(255,193,7,0.05) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(255,193,7,0.05) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(255,193,7,0.05) 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+}
+
+.material-card {
+  background: linear-gradient(145deg, hsl(var(--card)), hsl(var(--card) / 0.9));
+  border: 1px solid hsl(var(--border));
+  box-shadow: 
+    5px 5px 15px rgba(0,0,0,0.2),
+    -5px -5px 15px rgba(255,193,7,0.05); /* Subtle accent shadow */
+}
+
+.price-input {
+  background: hsl(var(--input));
+  border: 1px solid hsl(var(--border));
+  color: hsl(var(--foreground));
+  transition: all 0.3s ease;
+}
+
+.price-input::placeholder {
+  color: hsl(var(--muted-foreground));
+}
+
+.price-input:focus {
+  border-color: hsl(var(--ring));
+  box-shadow: 0 0 0 2px hsl(var(--ring) / 0.3);
+  background: hsl(var(--background));
+}
+
+/* Custom button styles for construction theme */
+.btn-calculate {
+  @apply w-full bg-amber-500 text-slate-900 hover:bg-amber-600 font-semibold py-3 text-lg shadow-md transition-all duration-300 ease-in-out;
+  @apply focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 focus:ring-offset-slate-800;
+}
+
+.btn-edit-price {
+  @apply h-6 w-6 p-0 hover:bg-amber-500/20 text-amber-400;
+}
+
+.btn-save-price {
+  @apply h-8 w-8 p-0 bg-green-500 hover:bg-green-600 text-white;
+}
+
+.btn-cancel-price {
+  @apply h-8 w-8 p-0 bg-red-500 hover:bg-red-600 text-white;
+}
