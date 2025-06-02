@@ -2,8 +2,16 @@
   command = "npm run build"
   publish = "dist"
 
+# Define cabeçalhos para arquivos JavaScript
 [[headers]]
-  for = "/*"
+  for = "/*.js"  # APLICA SOMENTE A ARQUIVOS .JS
   [headers.values]
     Content-Type = "text/javascript; charset=utf-8"
-    X-Content-Type-Options = "nosniff" # Boa prática para evitar problemas de MIME type
+    X-Content-Type-Options = "nosniff"
+
+# Se você tiver arquivos .css no assets e quiser garantir, pode adicionar outra regra
+# [[headers]]
+#   for = "/*.css"
+#   [headers.values]
+#     Content-Type = "text/css; charset=utf-8"
+#     X-Content-Type-Options = "nosniff"
